@@ -7,12 +7,12 @@ underlying network protocols. By providing a worldwide, distributed directory se
 Name System is an essential component of the functionality of the Internet, that has been in use
 since 1985. It works as follow.
 
-![](https://github.com/filippodp/university/blob/master/network.security/Images/How_DNS_Work.png "How DNS Work")
+![](https://github.com/filippodp/network.security/blob/master/images/Attack_Schema.png "How DNS Work")
 
 The Kaminsky attack is used to take control over an entire domain zone, replacing in a vulnerable
 server a NS-type record. The attack is performed in this way.
 
-![](https://github.com/filippodp/university/blob/master/network.security/Images/Attack_Schema.png "Attack Schema")
+![](https://github.com/filippodp/network.security/blob/master/images/Attack_Schema.png "Attack Schema")
 
 For this experience we used `bind9` on every DNS servers and `apache2` into the WEB servers.
 The entire lab was built on `docker`
