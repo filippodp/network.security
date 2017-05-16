@@ -1,0 +1,21 @@
+﻿FROM ubuntu
+MAINTAINER Alberto Bonizzi, Filippo Dai Prè, Roberto Fellin
+
+# Change the user root password in 'root'
+  RUN echo "root:root" | chpasswd && apt-get update
+
+# Install interested software
+  RUN apt-get install -y net-tools wget vim iputils-ping
+  RUN apt-get update && apt-get -y install apache2 && echo 'ServerName localhost' >> /etc/apache2/apache2.conf
+
+# Reterive custom configurations
+  ENV URLPATH https://github.com/filippodp/network.security/blob/master/docker.configuration.files/server.real.1  RUN cd /var/www/html && rm index.html && wget -O index.html $URLPATH/index.html
+
+# Add user to logged in at start
+  ENV USERID server.real
+  RUN useradd -ms /bin/bash $USERID
+  WORKDIR /home/$USERID
+    
+# Expose port/s and run CMD
+  EXPOSE 80
+  CMD sh -c 'service apache2 start' && sh -c 'su server.real' && /bin/bash
